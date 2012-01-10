@@ -4,9 +4,19 @@
 {% block extrahead %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/socket.io.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/websocket.js"></script>
 
   <script type="text/javascript">
       
+    $(document).ready(function() {
+        publish.form.addEventListener("submit", function (e) {
+        //$("#publish-form").bind('submit',function (e) {
+          e.preventDefault();
+            //var params = {"hub.mode":"subscribe","hub.verify":"async","hub.callback":callback_url,"hub.topic": publisher_url};
+            //socket.send(JSON.stringify(params));
+            subscribe();
+        }, false);
+    });
   </script>
 
 {% endblock %}
