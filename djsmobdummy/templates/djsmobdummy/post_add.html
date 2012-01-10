@@ -2,92 +2,11 @@
 {% load adminmedia  i18n %}
 
 {% block extrahead %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.js"></script>
-<!--
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.formset.js"></script>
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.autocomplete.css">
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dimensions.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.autocomplete.js"></script>
--->
-    <script type="text/javascript" src="{{ STATIC_URL }}js/socket.io.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/cookies_socket.js"></script>
-<!--    <script type="text/javascript" src="{{ STATIC_URL }}js/subscribe_socket.js"></script>-->
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/socket.io.js"></script>
 
   <script type="text/javascript">
       
-    //$(document).ready(function(){
-
-        //$("#publish-form").addEventListener("submit", function (e) {
-        //    e.preventDefault();
-        //    publish();
-        //}, false);
-
-
-      //var host = "localhost",
-      //    port = 8080;
-
-      //var rss_url = "http://localhost:8000/person/post/rssrdf";
-      //var callback_url = "http://localhost:8000/callback";
-      //var publisher_url = "http://smob.rhizomatik.net/me/rss";
-      //var foaf_url = "http://xmppwebid.github.com/xmppwebid/julia";
-
-      //var socket = new io.Socket(host, {port: port});
-
-
-      //socket.on('connect', function(){
-      //  console.debug("Socket opened");
-      //  send_or_ask_cookie(socket);
-      //});
-      
-      //socket.on('disconnect', function(){
-      //});
-
-      //socket.connect();
-//      $('#publish-button').click(function(e) {
-//        e.preventDefault();
-//        subscription(host, port, callback_url, publisher_url);
-//      });
-    //});
-    $(document).ready(function(){
-    //  $('#publish-button').click(function(e) {
-    //  //button.onclick = function (e) {
-    //    var params = {"hub.mode":"subscribe","hub.verify":"async","hub.callback":callback_url,"hub.topic": publisher_url};
-    //    socket.send(JSON.stringify(params));
-    //  });
-        function initConnection() {
-        
-          var host = "localhost",
-              port = 8080;
-
-          var rss_url = "http://localhost:8000/person/post/rssrdf";
-          var callback_url = "http://localhost:8000/callback";
-          var publisher_url = "http://smob.rhizomatik.net/me/rss";
-          var foaf_url = "http://xmppwebid.github.com/xmppwebid/julia";
-
-          var socket = new io.Socket(host, {port: port});
-
-
-          socket.on('connect', function(){
-            console.debug("Socket opened");
-            send_or_ask_cookie(socket);
-          });
-          
-          socket.on('disconnect', function(){
-          });
-
-          socket.connect();
-        }
-
-        $("#publish-form").bind('submit',function (e) {
-          e.preventDefault();
-          if (socket.connected == true) {
-            var params = {"hub.mode":"subscribe","hub.verify":"async","hub.callback":callback_url,"hub.topic": publisher_url};
-            socket.send(JSON.stringify(params));
-          }
-        }, false);
-        
-        initConnection();
-    });
   </script>
 
 {% endblock %}
