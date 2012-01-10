@@ -81,6 +81,7 @@ function followings() {
         // CREATE NEW SOCKET
         //conn = new WebSocket( serverUri );
         var conn = new io.Socket(host,{port: port});
+        //var socket = io.connectWithSession(host,{port: port});
         conn.connect(); 
         
         // ON SOCKET STABLISHED
