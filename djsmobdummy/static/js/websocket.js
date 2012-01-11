@@ -43,7 +43,7 @@ function send_or_ask_cookie() {
 function subscribe() {
   if (conn.connected) {
     console.debug("going to ask subscription for ");
-    var connection = {"hub.mode":"subscribe","hub.verify":"async","hub.callback":"http://localhost:8000/callback","hub.topic": "http://smob.rhizomatik.net/me/rss"};
+    var connection = {"hub.mode":"subscribe","hub.verify":"async","hub.callback":"http://localhost:8000/callback","hub.topic": "http://smob.rhizomatik.net/me/rss", "hub.foaf":"http://xmppwebid.github.com/xmppwebid/julia"};
     conn.send(JSON.stringify(connection));
   }
 }

@@ -22,7 +22,8 @@ def triples_person(request):
 <http://dbpedia.org/resource/Semantic_Web> <http://www.w3.org/2000/01/rdf-schema#label> "Semantic Web"
     """
     return HttpResponse(content=person,
-                        content_type='application/x-turtle')
+#                        content_type='application/x-turtle')
+                        content_type='text/turtle')
 
 def rssrdf_post(request):
     rss = """<?xml version="1.0" encoding="utf-8"?>
