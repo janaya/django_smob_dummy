@@ -41,11 +41,9 @@ function send_or_ask_cookie() {
 }
 
 function subscribe() {
-  if (conn.connected) {
     console.debug("going to ask subscription for ");
-    var connection = {"hub.mode":"subscribe","hub.verify":"async","hub.callback":"http://localhost:8000/callback","hub.topic": "http://smob.rhizomatik.net/me/rss", "hub.foaf":"http://xmppwebid.github.com/xmppwebid/julia"};
-    conn.send(JSON.stringify(connection));
-  }
+    var connection = {"hub.mode":"subscribe","hub.verify":"async","hub.callback":"http://localhost:8000/callback","hub.topic": "http://smob.rhizomatik.net/me/rss", "hub.foaf":"http://localhost:8000/person"};
+    conn.emit('subscribe', "foo", JSON.stringify(connection));
 }
 function followings() {
   if (conn.connected) {
@@ -80,15 +78,16 @@ function followings() {
         
         // CREATE NEW SOCKET
         //conn = new WebSocket( serverUri );
-        var conn = new io.Socket(host,{port: port});
+        //var conn = new io.Socket(host,{port: port});
         //var socket = io.connectWithSession(host,{port: port});
-        conn.connect(); 
-        
+        //conn.connect(); 
+        var conn = io.connect('http://localhost',{port: port});
+
         // ON SOCKET STABLISHED
         conn.on('connect',function() {
           console.debug("Socket opened");
-          send_or_ask_cookie();
-          
+          //send_or_ask_cookie();
+          conn.emit('init', { domain: 'http://localhost:8000' });
         });
 
         // ON MESSAGE RECEIVED
@@ -100,13 +99,14 @@ function followings() {
           
           try {
             // MESSAGE IS JSON
-            json = JSON.parse(string);
-            console.debug(json);
-            if ( json.ClientId ) {
-              console.debug(json.ClientId);
-              createCookie("ClientId",json.ClientId);
-              console.debug("stored cookie");
-            };
+            console.debug(data['domain']);
+//            json = JSON.parse(string);
+//            console.debug(json);
+//            if ( json.ClientId ) {
+//              console.debug(json.ClientId);
+//              createCookie("ClientId",json.ClientId);
+//              console.debug("stored cookie");
+//            };
           } catch(err) {
             // MESSAGE IS NOT JSON
             console.debug("no json", err);
@@ -117,7 +117,7 @@ function followings() {
             //sh_highlightDocument(); 
             //if($('#messages').children().size() > 5) {
             //    $('#messages pre:last-child').remove();
-          }
+          };
           
         });
 

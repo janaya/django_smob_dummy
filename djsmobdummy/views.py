@@ -137,6 +137,10 @@ def add_post(request):
         #return redirect('home')
     else: # GET
         logging.debug("method not post  ")
+    import socket
+    logging.info("hostname" + socket.gethostname())
+    print "hostname"
+    print socket.gethostname()
     return render_to_response('djsmobdummy/post_add.html', 
                                {'triples': triples,
                                },
